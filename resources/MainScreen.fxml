@@ -40,8 +40,6 @@
                   prefHeight="25.0" prefWidth="217.0" promptText="Last Name" />
     <JFXTextField focusColor="#48a5ea" fx:id="emailTextField" layoutX="133.0" layoutY="157.0"
                   prefHeight="25.0" prefWidth="217.0" promptText="Email (optional)" />
-    <JFXTextField focusColor="#48a5ea" fx:id="titleTextField" layoutX="418.0" layoutY="157.0"
-                  prefHeight="25.0" prefWidth="217.0" promptText="Speech Title" />
     <JFXButton layoutX="133.0" layoutY="349.0" prefHeight="25.0" prefWidth="94.0" text="Reset All"/>
     <JFXButton layoutX="524.0" layoutY="349.0" prefHeight="25.0" prefWidth="116.0"
                style="-fx-background-color: #48A5EA;" text="Submit" textFill="WHITE" />

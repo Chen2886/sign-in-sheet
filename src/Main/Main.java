@@ -57,7 +57,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.mainStage = stage;
 
-        Scene scene = loadFXML("MainScreen.fxml");
+        Scene scene = loadFXML("EntryForm.fxml");
         stage.setScene(scene);
 
         stage.setOnCloseRequest(event -> {
@@ -82,8 +82,8 @@ public class Main extends Application {
             FileInputStream fileInputStream = new FileInputStream(new File(fxmlPath + fxmlName));
             Parent parent = loader.load(fileInputStream);
 
-            MainScreen mainScreen = loader.getController();
-            mainScreen.initData(mainStage);
+            EntryFormController entryFormController = loader.getController();
+            entryFormController.initData(mainStage);
 
             Scene scene = new Scene(parent);
             scene.getStylesheets().add(styleSheetPath);
