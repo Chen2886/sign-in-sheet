@@ -23,10 +23,10 @@ import java.time.LocalDate;
 
 public class Main extends Application {
 
-    // CSS path
-    public static String styleSheetPath =
-            Paths.get("resources/stylesheet.css").toUri().toString().replace("file:///", "");
     public static String fxmlPath = "resources/";
+    public static String styleSheetPath =
+            Paths.get("resources/stylesheet.css").toUri().toString();
+    private Stage mainStage;
 
     /**
      * Function that initialize before stage shows
@@ -36,6 +36,9 @@ public class Main extends Application {
 
         // Clear error log
         HandleError.clear();
+
+        // init Final Constant
+        FinalConstants.init();
 
         // Initialize Database
         if (!DatabaseUtil.ConnectionInitAndCreate()) {
@@ -52,7 +55,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = Main.loadFXML("MainScreen.fxml");
+        this.mainStage = stage;
+
+        Scene scene = loadFXML("MainScreen.fxml");
         stage.setScene(scene);
 
         stage.setOnCloseRequest(event -> {
@@ -71,16 +76,21 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static Scene loadFXML(String fxmlName) {
+    public Scene loadFXML(String fxmlName) {
         try {
             FXMLLoader loader = new FXMLLoader();
             FileInputStream fileInputStream = new FileInputStream(new File(fxmlPath + fxmlName));
             Parent parent = loader.load(fileInputStream);
+
+            MainScreen mainScreen = loader.getController();
+            mainScreen.initData(mainStage);
+
             Scene scene = new Scene(parent);
-            scene.getStylesheets().add("file:///" + styleSheetPath);
+            scene.getStylesheets().add(styleSheetPath);
             return scene;
         } catch (Exception e) {
-            AlertBox.display("错误", "窗口错误！");
+            e.printStackTrace();
+            AlertBox.display("Error", "Loading Window Error！");
             new HandleError(Main.class.getName(), Thread.currentThread().getStackTrace()[1].getMethodName(),
                     e.getMessage(), e.getStackTrace(), false);
             return new Scene(new VBox());

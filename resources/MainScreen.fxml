@@ -2,23 +2,47 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane minHeight="600.0" minWidth="970" fx:controller="Main.MainScreen"
+<?import javafx.geometry.Insets?>
+<AnchorPane minHeight="417.0" minWidth="700" fx:controller="Main.MainScreen"
             xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-       <MenuBar AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
-           <menus>
-               <Menu text="Controls">
-                   <items>
-                       <MenuItem text="Admin Panel"/>
-                       <MenuItem text="Exit"/>
-                   </items>
-               </Menu>
-           </menus>
-       </MenuBar>
-       <VBox fx:id="mainVBox">
+    <Pane prefWidth="110.0" style="-fx-background-color: #48A5EA;" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+            AnchorPane.leftAnchor="0">
+        <children>
+            <ImageView fx:id="adminButton" fitWidth="32" fitHeight="32" layoutX="39.0" layoutY="300.0"
+                       pickOnBounds="true" preserveRatio="true" styleClass="imageButtons">
+            </ImageView>
+            <ImageView fx:id="powerButton" fitWidth="32" fitHeight="32" layoutX="39.0" layoutY="363.0"
+                       pickOnBounds="true" preserveRatio="true" styleClass="imageButtons">
+            </ImageView>
 
-       </VBox>
-   </children>
+        </children>
+    </Pane>
+    <Label layoutX="133.0" layoutY="31.0" text="Check In Form" textFill="#48a5ea">
+        <font>
+            <Font name="System Bold" size="22.0" />
+        </font>
+    </Label>
+    <JFXTextField focusColor="#48a5ea" fx:id="firstNameTextField" layoutX="133.0" layoutY="92.0"
+                  prefHeight="25.0" prefWidth="217.0" promptText="First Name" />
+    <JFXTextField focusColor="#48a5ea" fx:id="lastNameTextField" layoutX="418.0" layoutY="92.0"
+                  prefHeight="25.0" prefWidth="217.0" promptText="Last Name" />
+    <JFXTextField focusColor="#48a5ea" fx:id="emailTextField" layoutX="133.0" layoutY="157.0"
+                  prefHeight="25.0" prefWidth="217.0" promptText="Email (optional)" />
+    <JFXTextField focusColor="#48a5ea" fx:id="titleTextField" layoutX="418.0" layoutY="157.0"
+                  prefHeight="25.0" prefWidth="217.0" promptText="Speech Title" />
+    <JFXButton layoutX="133.0" layoutY="349.0" prefHeight="25.0" prefWidth="94.0" text="Reset All"/>
+    <JFXButton layoutX="524.0" layoutY="349.0" prefHeight="25.0" prefWidth="116.0"
+               style="-fx-background-color: #48A5EA;" text="Submit" textFill="WHITE" />
 </AnchorPane>
