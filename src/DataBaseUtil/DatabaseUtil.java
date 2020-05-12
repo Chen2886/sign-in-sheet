@@ -252,4 +252,22 @@ public class DatabaseUtil {
             CloseConnectionToDB();
         }
     }
+
+    public static void deleteEntry(Entry entry) throws SQLException {
+        try {
+            ConnectToDB();
+
+            String SQLCommand = "DELETE FROM entries WHERE serialNum = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLCommand);
+            preparedStatement.setInt(1, entry.getSerialNum());
+            preparedStatement.executeUpdate();
+            CloseConnectionToDB();
+        } catch (SQLException e) {
+            new HandleError(DatabaseUtil.class.getName(), Thread.currentThread().getStackTrace()[1].getMethodName(),
+                    e.getMessage(), e.getStackTrace(), false);
+            throw new SQLException();
+        } finally {
+            CloseConnectionToDB();
+        }
+    }
 }

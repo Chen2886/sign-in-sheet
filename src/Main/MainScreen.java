@@ -14,17 +14,16 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -37,6 +36,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Key;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -159,6 +159,25 @@ public class MainScreen {
         historyTable.getColumns().clear();
         historyTable.getColumns().addAll(columnArrayList);
         historyTable.getItems().setAll(allEntry);
+
+        historyTable.setOnKeyPressed(event -> {
+            if ((event.getCode() == KeyCode.DELETE || event.getCode() == KeyCode.BACK_SPACE) &&
+                    (historyTable.getSelectionModel().getSelectedItems() != null)) {
+                try {
+                    if (ConfirmBox.display("Confirm", "Are you sure you want to delte this row?", "Yes", "No")) {
+                        DatabaseUtil.deleteEntry(historyTable.getSelectionModel().getSelectedItem());
+                        historyTable.getItems().clear();
+                        historyTable.getItems().setAll(DatabaseUtil.GetAllEntry());
+                        historyTable.refresh();
+                    }
+                } catch (SQLException e) {
+                    AlertBox.display("Error", "Could not delete!");
+                    e.printStackTrace();
+                    e.getMessage();
+                }
+            }
+        });
+
     }
 
 
