@@ -57,8 +57,10 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.mainStage = stage;
 
-        Scene scene = loadFXML("EntryForm.fxml");
+        Scene scene = loadFXML("CheckInForm.fxml");
         stage.setScene(scene);
+        stage.setMinWidth(700);
+        stage.setMinHeight(417);
 
         stage.setOnCloseRequest(event -> {
             Path source = Paths.get("signInEntries.db");
@@ -83,7 +85,7 @@ public class Main extends Application {
             Parent parent = loader.load(fileInputStream);
 
             EntryFormController entryFormController = loader.getController();
-            entryFormController.initData(mainStage);
+            entryFormController.initData(mainStage, "testing");
 
             Scene scene = new Scene(parent);
             scene.getStylesheets().add(styleSheetPath);

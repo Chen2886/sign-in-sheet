@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="417.0" minWidth="700" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.EntryFormController">
+    <Pane prefWidth="110.0" style="-fx-background-color: #48A5EA;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+        <ImageView fx:id="backButton" fitHeight="32" fitWidth="32" layoutX="39.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" styleClass="imageButtons">
+        </ImageView>
+    </Pane>
+    <Label layoutX="133.0" layoutY="31.0" prefHeight="40" text="Check In Form" textFill="#48a5ea" AnchorPane.leftAnchor="143.0" AnchorPane.topAnchor="30.0">
+        <font>
+            <Font name="System Bold" size="22.0" />
+        </font>
+    </Label>
+    <GridPane hgap="20.0" vgap="20.0" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="80.0">
+        <JFXTextField fx:id="nameTextField" focusColor="#48a5ea" promptText="Name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <JFXTextField fx:id="emailTextField" focusColor="#48a5ea" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <JFXTextArea fx:id="suggestionsTextArea" focusColor="#48a5ea" promptText="Suggestions" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+        <JFXButton fx:id="resetButton" prefWidth="100" text="Reset All" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <HBox minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER_RIGHT" >
+            <JFXButton fx:id="submitButton" prefWidth="150"  contentDisplay="CENTER" style="-fx-background-color: #48A5EA;"
+                       text="Submit" textFill="WHITE" />
+        </HBox>
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50" />
+            <ColumnConstraints percentWidth="50" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints vgrow="ALWAYS" />
+            <RowConstraints vgrow="ALWAYS" />
+        </rowConstraints>
+    </GridPane>
+</AnchorPane>
