@@ -67,4 +67,9 @@ public class Entry {
     public void setCheckInDate(LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s, %s, %s", checkInDate.toString(), title, name, email, suggestions);
+    }
 }

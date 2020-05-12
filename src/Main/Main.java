@@ -1,6 +1,5 @@
 package Main;
 
-import DataBaseUtil.DBOrder;
 import DataBaseUtil.DatabaseUtil;
 import DataBaseUtil.SerialNum;
 import Util.*;
@@ -10,16 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class Main extends Application {
 
@@ -57,10 +54,11 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.mainStage = stage;
 
-        Scene scene = loadFXML("CheckInForm.fxml");
+        Scene scene = loadMainFXML("MainScreen.fxml");
         stage.setScene(scene);
         stage.setMinWidth(700);
         stage.setMinHeight(417);
+        stage.initStyle(StageStyle.UNDECORATED);
 
         stage.setOnCloseRequest(event -> {
             Path source = Paths.get("signInEntries.db");
@@ -78,14 +76,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    public Scene loadFXML(String fxmlName) {
+    public Scene loadMainFXML(String fxmlName) {
         try {
             FXMLLoader loader = new FXMLLoader();
             FileInputStream fileInputStream = new FileInputStream(new File(fxmlPath + fxmlName));
             Parent parent = loader.load(fileInputStream);
 
-            EntryFormController entryFormController = loader.getController();
-            entryFormController.initData(mainStage, "testing");
+            MainScreen mainScreen = loader.getController();
+            mainScreen.initData(mainStage);
 
             Scene scene = new Scene(parent);
             scene.getStylesheets().add(styleSheetPath);

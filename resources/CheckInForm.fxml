@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="417.0" minWidth="700" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.EntryFormController">
+<AnchorPane fx:id="root" minHeight="417.0" minWidth="700" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.EntryFormController">
     <Pane prefWidth="110.0" style="-fx-background-color: #48A5EA;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
         <ImageView fx:id="backButton" fitHeight="32" fitWidth="32" layoutX="39.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" styleClass="imageButtons">
         </ImageView>
     </Pane>
-    <Label layoutX="133.0" layoutY="31.0" prefHeight="40" text="Check In Form" textFill="#48a5ea" AnchorPane.leftAnchor="143.0" AnchorPane.topAnchor="30.0">
+    <Label fx:id="topLabel" layoutX="133.0" layoutY="31.0" prefHeight="40" textFill="#48a5ea" AnchorPane.leftAnchor="143.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font name="System Bold" size="22.0" />
         </font>

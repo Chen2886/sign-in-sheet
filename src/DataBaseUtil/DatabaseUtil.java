@@ -4,8 +4,11 @@ package DataBaseUtil;
 
 import Main.Entry;
 import Util.HandleError;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class DatabaseUtil {
     
@@ -209,6 +212,38 @@ public class DatabaseUtil {
             preparedStatement.setInt(8, entry.getCheckInDate().getDayOfMonth());
             preparedStatement.executeUpdate();
             CloseConnectionToDB();
+        } catch (SQLException e) {
+            new HandleError(DatabaseUtil.class.getName(), Thread.currentThread().getStackTrace()[1].getMethodName(),
+                    e.getMessage(), e.getStackTrace(), false);
+            throw new SQLException();
+        } finally {
+            CloseConnectionToDB();
+        }
+    }
+
+    public static ObservableList<Entry> GetAllEntry() throws SQLException {
+        try {
+            ConnectToDB();
+
+            ObservableList<Entry> entryObservableList = FXCollections.observableArrayList();
+
+            String SQLCommand = "SELECT * FROM entries ORDER BY serialNum DESC";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQLCommand);
+
+            while (resultSet.next()) {
+                Entry entry = new Entry(resultSet.getInt("serialNum"));
+                entry.setName(resultSet.getString("name"));
+                entry.setTitle(resultSet.getString("title"));
+                entry.setSuggestions(resultSet.getString("suggestions"));
+                entry.setEmail(resultSet.getString("email"));
+                entry.setCheckInDate(LocalDate.of(resultSet.getInt("CheckInDateYear"),
+                        resultSet.getInt("CheckInDateMonth"),
+                        resultSet.getInt("CheckInDateDay")));
+                entryObservableList.add(entry);
+            }
+            CloseConnectionToDB();
+            return entryObservableList;
         } catch (SQLException e) {
             new HandleError(DatabaseUtil.class.getName(), Thread.currentThread().getStackTrace()[1].getMethodName(),
                     e.getMessage(), e.getStackTrace(), false);
