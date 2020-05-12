@@ -11,6 +11,22 @@ public class Entry {
     String suggestions;
     LocalDate checkInDate;
 
+    public Entry(int serialNum) {
+        this.serialNum = serialNum;
+        this.title = "";
+        this.name = "";
+        this.email = "";
+        this.suggestions = "";
+        this.checkInDate = LocalDate.now();
+    }
+
+    public int getSerialNum() {
+        return serialNum;
+    }
+
+    public void setSerialNum(int serialNum) {
+        this.serialNum = serialNum;
+    }
 
     public String getTitle() {
         return title;
