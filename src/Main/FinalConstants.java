@@ -1,6 +1,6 @@
 package Main;
 
-import java.io.File;
+import java.net.URL;
 
 public class FinalConstants {
 
@@ -10,28 +10,28 @@ public class FinalConstants {
     // entry property headers
     public static final String[] entryPropertyHeader = new String[]{"checkInDate", "title", "name", "email", "suggestions"};
 
-    public static File adminInputWhite;
-    public static File powerInputWhite;
-    public static File backWhite;
-    public static File createWhite;
-    public static File exportWhite;
-    public static File adminInputBlack;
-    public static File powerInputBlack;
-    public static File backBlack;
-    public static File createBlack;
-    public static File exportBlack;
+    public static URL adminInputWhite;
+    public static URL powerInputWhite;
+    public static URL backWhite;
+    public static URL createWhite;
+    public static URL exportWhite;
+    public static URL adminInputBlack;
+    public static URL powerInputBlack;
+    public static URL backBlack;
+    public static URL createBlack;
+    public static URL exportBlack;
 
     public static void init() {
-        adminInputWhite = new File("resources/images/adminIcon.png");
-        powerInputWhite = new File("resources/images/powerIcon.png");
-        backWhite = new File("resources/images/backIcon.png");
-        createWhite = new File("resources/images/createIcon.png");
-        exportWhite = new File("resources/images/exportIcon.png");
-        adminInputBlack = new File("resources/images/adminIconBlack.png");
-        powerInputBlack = new File("resources/images/powerIconBlack.png");
-        backBlack = new File("resources/images/backIconBlack.png");
-        createBlack = new File("resources/images/createIconBlack.png");
-        exportBlack = new File("resources/images/exportIconBlack.png");
+        adminInputWhite = FinalConstants.class.getResource("/images/adminIcon.png");
+        powerInputWhite = FinalConstants.class.getResource("/images/powerIcon.png");
+        backWhite = FinalConstants.class.getResource("/images/backIcon.png");
+        createWhite = FinalConstants.class.getResource("/images/createIcon.png");
+        exportWhite = FinalConstants.class.getResource("/images/exportIcon.png");
+        adminInputBlack = FinalConstants.class.getResource("/images/adminIconBlack.png");
+        powerInputBlack = FinalConstants.class.getResource("/images/powerIconBlack.png");
+        backBlack = FinalConstants.class.getResource("/images/backIconBlack.png");
+        createBlack = FinalConstants.class.getResource("/images/createIconBlack.png");
+        exportBlack = FinalConstants.class.getResource("/images/exportIconBlack.png");
     }
 
 }

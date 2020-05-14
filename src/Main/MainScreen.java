@@ -7,45 +7,34 @@ import Util.HandleError;
 import Util.SimpleAnswerBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Key;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class MainScreen {
     Stage stage;
 
     public TableView<Entry> historyTable;
-    public HBox headerHBox;
 
     public AnchorPane root;
 
@@ -67,23 +56,23 @@ public class MainScreen {
     public void initialize() {
 
         // pictures
-        powerButton.setImage(new Image(FinalConstants.powerInputWhite.toURI().toString()));
-        createButton.setImage(new Image(FinalConstants.createWhite.toURI().toString()));
-        exportButton.setImage(new Image(FinalConstants.exportWhite.toURI().toString()));
+        powerButton.setImage(new Image(FinalConstants.powerInputWhite.toString()));
+        createButton.setImage(new Image(FinalConstants.createWhite.toString()));
+        exportButton.setImage(new Image(FinalConstants.exportWhite.toString()));
         powerButton.setOnMouseEntered(event -> {
-            powerButton.setImage(new Image(FinalConstants.powerInputBlack.toURI().toString()));
+            powerButton.setImage(new Image(FinalConstants.powerInputBlack.toString()));
             stage.getScene().setCursor(Cursor.HAND);
         });
         powerButton.setOnMouseExited(event -> {
-            powerButton.setImage(new Image(FinalConstants.powerInputWhite.toURI().toString()));
+            powerButton.setImage(new Image(FinalConstants.powerInputWhite.toString()));
             stage.getScene().setCursor(Cursor.DEFAULT);
         });
         createButton.setOnMouseEntered(event -> {
-            createButton.setImage(new Image(FinalConstants.createBlack.toURI().toString()));
+            createButton.setImage(new Image(FinalConstants.createBlack.toString()));
             stage.getScene().setCursor(Cursor.HAND);
         });
         createButton.setOnMouseExited(event -> {
-            createButton.setImage(new Image(FinalConstants.createWhite.toURI().toString()));
+            createButton.setImage(new Image(FinalConstants.createWhite.toString()));
             stage.getScene().setCursor(Cursor.DEFAULT);
         });
         createButton.setOnMouseClicked(event -> {
@@ -94,11 +83,11 @@ public class MainScreen {
             else loadEntryForm(title);
         });
         exportButton.setOnMouseEntered(event -> {
-            exportButton.setImage(new Image(FinalConstants.exportBlack.toURI().toString()));
+            exportButton.setImage(new Image(FinalConstants.exportBlack.toString()));
             stage.getScene().setCursor(Cursor.HAND);
         });
         exportButton.setOnMouseExited(event -> {
-            exportButton.setImage(new Image(FinalConstants.exportWhite.toURI().toString()));
+            exportButton.setImage(new Image(FinalConstants.exportWhite.toString()));
             stage.getScene().setCursor(Cursor.DEFAULT);
         });
         exportButton.setOnMouseClicked(event -> {
@@ -184,7 +173,7 @@ public class MainScreen {
     private void loadEntryForm(String title) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            FileInputStream fileInputStream = new FileInputStream(new File(Main.fxmlPath + "CheckInForm.fxml"));
+            InputStream fileInputStream = getClass().getResourceAsStream(Main.fxmlPath + "CheckInForm.fxml");
             Parent parent = loader.load(fileInputStream);
 
             EntryFormController entryFormController = loader.getController();

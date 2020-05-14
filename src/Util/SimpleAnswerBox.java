@@ -3,7 +3,6 @@ package Util;
 // from my other packages
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -34,7 +33,7 @@ public class SimpleAnswerBox {
 
 		JFXTextField answerTextField = new JFXTextField();
 		answerTextField.setPadding(new Insets(10, 10, 10, 10));
-		answerTextField.setPromptText("Password");
+		answerTextField.setPromptText("Title");
 
 		//Create two buttons
 		JFXButton yesButton = new JFXButton("Confirm");

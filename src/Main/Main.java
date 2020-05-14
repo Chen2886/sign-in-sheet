@@ -14,15 +14,15 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Main extends Application {
 
-    public static String fxmlPath = "resources/";
-    public static String styleSheetPath =
-            Paths.get("resources/stylesheet.css").toUri().toString();
+    public static String fxmlPath = "/";
+    public static String styleSheetPath = fxmlPath + "stylesheet.css";
     private Stage mainStage;
 
     /**
@@ -79,7 +79,7 @@ public class Main extends Application {
     public Scene loadMainFXML(String fxmlName) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            FileInputStream fileInputStream = new FileInputStream(new File(fxmlPath + fxmlName));
+            InputStream fileInputStream = getClass().getResourceAsStream(fxmlPath + fxmlName);
             Parent parent = loader.load(fileInputStream);
 
             MainScreen mainScreen = loader.getController();

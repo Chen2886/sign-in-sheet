@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="SignIn:jar">
+  <artifact type="jar" name="SignIn:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/SignIn_jar</output-path>
     <root id="archive" name="SignIn.jar">
       <element id="module-output" name="SignIn" />
